@@ -7,9 +7,20 @@ namespace TemperatureExceptions
         private double fahrenheit;
         public static double AbsoluteZeroFahrenheit { get; } = -459.67;
 
-        public Temperature(double fahrenheit)
+        public Temperature(double fahrenheit) // added try catch and finally
         {
-            Fahrenheit = fahrenheit;
+            try
+            {
+                Fahrenheit = fahrenheit;
+            }
+            catch (ArgumentOutOfRangeException e) // e did not use here, if we remove e still works. do not know why?
+            {
+                Fahrenheit = -459.67;
+            }
+            finally
+            {
+                Console.WriteLine("Fahrenheit cannot be less than -459.67.");
+            }
         }
 
         public double Fahrenheit
